@@ -75,8 +75,8 @@ RUN ln -s /opt/src/otrs/scripts/apache2-httpd.include.conf /etc/apache2/sites-av
 ################## EASY OTRS DOCKER #############
 # Install database
 COPY mysql-server-installation-defaults.sh /opt/src/
-RUN chmod +x /opt/src/mysql-server-installation-defaults.sh && \
-    /opt/src/mysql-server-installation-defaults.sh
+RUN chmod +x /opt/src/mysql-server-installation-defaults.sh
+RUN /opt/src/mysql-server-installation-defaults.sh
 
 RUN apt-get -y install mysql-server
 
