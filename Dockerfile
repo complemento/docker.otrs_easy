@@ -74,16 +74,12 @@ RUN ln -s /opt/src/otrs/scripts/apache2-httpd.include.conf /etc/apache2/sites-av
 
 ################## EASY OTRS DOCKER #############
 # Install database
-COPY mysql-server-installation-defaults.sh /opt/src/
-RUN chmod +x /opt/src/mysql-server-installation-defaults.sh
-RUN /opt/src/mysql-server-installation-defaults.sh
-
+ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -y install mysql-server
-
 COPY z_my_otrs.cnf /etc/mysql/mysql.conf.d/
-
 RUN /etc/init.d/mysql start && \
     sleep 3 && \
+    mysqladmin -u root password complemento && \
     mysql -u root -pcomplemento -e "GRANT ALL PRIVILEGES ON *.* TO otrs@localhost IDENTIFIED BY 'complemento'; FLUSH PRIVILEGES;" && \
     mysql -u otrs -pcomplemento -e "CREATE DATABASE otrs DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;" && \
     mysql -u otrs -pcomplemento otrs < /opt/src/otrs/scripts/database/otrs-schema.mysql.sql && \
