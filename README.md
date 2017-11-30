@@ -92,4 +92,3 @@ Example:
 `docker run -ti --name easy_otrs -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 -e OTRS_DEFAULT_LANGUAGE=pt_BR -e OTRS_FQDN=servicedesk.mycompany.com -e OTRS_SYSTEM_ID=53 ligero/easy_otrs`
 
 Note that these parameters can be only defined during the first run of the Docker. If you didn't specify any of them, then you should change those parameters under OTRS SysConfig.
-
