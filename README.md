@@ -31,9 +31,13 @@ How to Run it
 `docker run -ti --name easy_otrs -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 ligero/easy_otrs`
 
 The container will start to load and when see the following lines, you will be able to access OTRS (the time should be different of course):
+
 2017-11-30 01:48:52,119 INFO success: cron entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+
 2017-11-30 01:48:52,120 INFO success: mysql entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+
 2017-11-30 01:48:52,120 INFO success: apache2 entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+
 
 If you are not used to Docker, you can hit Ctrl+P+Q at this moment to get back to your system without interrupting the container execution.
 
@@ -41,9 +45,9 @@ Accessing your OTRS the first time
 ----------------------------------
 If you are running docker in your localhost, just open your browser on:
 
-**http://localhost/otrs/index.pl**
-**user: root@localhost**
-**password: complemento**
+- **http://localhost/otrs/index.pl**
+- **user: root@localhost**
+- **password: complemento**
 
 If you turned off your Docker or your computer
 ----------------------------------------------
