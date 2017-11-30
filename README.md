@@ -45,7 +45,7 @@ TIP: If you are not used to Docker, you can hit Ctrl+P+Q at this moment to get b
 
 Accessing your OTRS the first time
 ----------------------------------
-If you are running docker in your localhost, just open your browser on:
+If you are running docker from your localhost, just open your browser on:
 
 - **http://localhost/otrs/index.pl**
 - **user: root@localhost**
