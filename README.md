@@ -54,7 +54,7 @@ If you are running docker from your localhost, just open your browser on:
 If you turned off your Docker or your computer
 ----------------------------------------------
 
-In some situations, your OTRS container may be stopped or not. You can check it status by running:
+In some situations, your OTRS container may be stopped. You can check it status by running:
 
 `docker ps -a`
 
@@ -64,20 +64,12 @@ If it's stopped, than you can start it again by running:
 
 `docker start easy_otrs`
 
-Additional parameters for the first run
----------------------------------------
-If you are used to Docker, you optionally can define some parameters for the container creation:
-- OTRS_DEFAULT_LANGUAGE: You can define the default language, such as pt_BR
-- OTRS_FQDN: Define the hostname for all the notifications send from your system
-- OTRS_SYSTEM_ID: Defines your OTRS System ID (Check OTRS Manual for more information)
-
-
 More tips about Docker
 ----------------------
 
 If you are not used to docker, you should know a litle bit more about the command we suggested for you:
 
-`docker run -ti --name easy_otrs -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 ligero/easy_otrs`
+`docker run -ti --name easy_otrs -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 ligero/easy_otrs:6.0.X`
 
 **-ti**
 
@@ -88,3 +80,16 @@ The parameter -ti is mainly intent to allow us to access the container bash. Alw
 
 -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs creates volumes outside the container. In this case, we are creating external volumes for the mysql files (database) and for the application.
 This is important because for persistent your data. It also makes easier the application version update.
+
+Additional parameters for the first run
+---------------------------------------
+If you are used to Docker, you optionally can define some parameters for the container creation (docker run):
+- OTRS_DEFAULT_LANGUAGE: You can define the default language, such as pt_BR
+- OTRS_FQDN: Define the hostname for all the notifications send from your system
+- OTRS_SYSTEM_ID: Defines your OTRS System ID (Check OTRS Manual for more information)
+
+Example:
+`docker run -ti --name easy_otrs -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 -e OTRS_DEFAULT_LANGUAGE=pt_BR -e OTRS_FQDN=servicedesk.mycompany.com -e OTRS_SYSTEM_ID=53 ligero/easy_otrs`
+
+Note that these parameters can be only defined during the first run of the Docker. If you didn't specify any of them, then you should change those parameters under OTRS SysConfig.
+
