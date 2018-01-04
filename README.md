@@ -19,7 +19,7 @@ This image aims to be a very easy way to get OTRS running, in a few seconds (ok,
 If you are planning to use OTRS running on Docker in a medium/large production environment, then you should check the option bellow, that includes only the application in a container:
 https://hub.docker.com/r/ligero/otrs/
 
-Current OTRS Version: 6.0.1
+Current OTRS Version: 6.0.3
 
 How to Run it
 -------------
@@ -30,7 +30,7 @@ How to Run it
 
  2. Run the following command:
 
-`docker run -ti --name easy_otrs -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 ligero/easy_otrs:6.0.1`
+`docker run -ti --name easy_otrs -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 ligero/easy_otrs`
 
 The container will start to load and when see the following lines, you will be able to access OTRS (the time should be different of course):
 
@@ -42,6 +42,10 @@ The container will start to load and when see the following lines, you will be a
 
 
 TIP: If you are not used to Docker, you can hit Ctrl+P+Q at this moment to get back to your system without interrupting the container execution.
+
+You can choose to run also a specific OTRS 6 version:
+
+`docker run -ti --name easy_otrs -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 ligero/easy_otrs:6.0.2`
 
 Accessing your OTRS the first time
 ----------------------------------
@@ -69,7 +73,7 @@ More tips about Docker
 
 If you are not used to docker, you should know a litle bit more about the command we suggested for you:
 
-`docker run -ti --name easy_otrs -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 ligero/easy_otrs:6.0.X`
+`docker run -ti --name easy_otrs -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 ligero/easy_otrs`
 
 **-ti**
 
