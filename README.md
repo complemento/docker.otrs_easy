@@ -1,6 +1,6 @@
 ﻿[![N|Solid](https://i1.wp.com/complemento.net.br/wp-content/uploads/2017/11/logo_otrs6free.png?fit=300%2C68&ssl=1)]()
 
-Easy Docker Installation
+OTRS Easy Docker Installation
 ========================
 
 What's OTRS?
@@ -30,7 +30,7 @@ How to Run it
 
  2. Run the following command:
 
-`docker run -ti --name easy_otrs -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 ligero/easy_otrs`
+`docker run -ti --name otrs_easy -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 ligero/otrs_easy`
 
 The container will start to load and when see the following lines, you will be able to access OTRS (the time should be different of course):
 
@@ -45,7 +45,7 @@ TIP: If you are not used to Docker, you can hit Ctrl+P+Q at this moment to get b
 
 You can choose to run also a specific OTRS 6 version:
 
-`docker run -ti --name easy_otrs -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 ligero/easy_otrs:6.0.2`
+`docker run -ti --name otrs_easy -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 ligero/otrs_easy:6.0.4`
 
 Accessing your OTRS the first time
 ----------------------------------
@@ -62,18 +62,18 @@ In some situations, your OTRS container may be stopped. You can check it status 
 
 `docker ps -a`
 
-And see if the container easy_otrs (or wherever you have called it) is stopped or not.
+And see if the container otrs_easy (or wherever you have called it) is stopped or not.
 
 If it's stopped, than you can start it again by running:
 
-`docker start easy_otrs`
+`docker start otrs_easy`
 
 More tips about Docker
 ----------------------
 
 If you are not used to docker, you should know a litle bit more about the command we suggested for you:
 
-`docker run -ti --name easy_otrs -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 ligero/easy_otrs`
+`docker run -ti --name otrs_easy -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 ligero/otrs_easy`
 
 **-ti**
 
@@ -93,6 +93,6 @@ If you are used to Docker, you optionally can define some parameters for the con
 - OTRS_SYSTEM_ID: Defines your OTRS System ID (Check OTRS Manual for more information)
 
 Example:
-`docker run -ti --name easy_otrs -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 -e OTRS_DEFAULT_LANGUAGE=pt_BR -e OTRS_FQDN=servicedesk.mycompany.com -e OTRS_SYSTEM_ID=53 ligero/easy_otrs`
+`docker run -ti --name otrs_easy -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 -e OTRS_DEFAULT_LANGUAGE=pt_BR -e OTRS_FQDN=servicedesk.mycompany.com -e OTRS_SYSTEM_ID=53 ligero/otrs_easy`
 
 Note that these parameters can be only defined during the first run of the Docker. If you didn't specify any of them, then you should change those parameters under OTRS SysConfig.
