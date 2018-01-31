@@ -19,7 +19,7 @@ This image aims to be a very easy way to get OTRS running, in a few seconds (ok,
 If you are planning to use OTRS running on Docker in a medium/large production environment, then you should check the option bellow, that includes only the application in a container:
 https://hub.docker.com/r/ligero/otrs/
 
-Current OTRS Version: 6.0.3
+Current OTRS Version: 6.0.4
 
 How to Run it
 -------------
