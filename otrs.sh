@@ -31,6 +31,8 @@ if [ ! -f "/installed" ]  ; then
     
     ###### SysConfig defaults ##############
     /etc/init.d/mysql start
+    while ! mysqladmin ping --silent; do sleep 1; done
+    
     if [ -n "${OTRS_DEFAULT_LANGUAGE}" ]; then
         echo "TESTE"
         su -c "/opt/otrs/bin/otrs.Console.pl Admin::Config::Update --no-deploy --setting-name DefaultLanguage --value ${OTRS_DEFAULT_LANGUAGE}" -s /bin/bash otrs;
@@ -51,6 +53,7 @@ if [ ! -f "/installed" ]  ; then
     su -c "/opt/otrs/bin/otrs.Console.pl Admin::User::SetPassword 'root@localhost' complemento" -s /bin/bash otrs;
     
     /etc/init.d/mysql stop
+    while mysqladmin ping --silent; do sleep 1; done
     ########################################
 
     touch "/installed"
