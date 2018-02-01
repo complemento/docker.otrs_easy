@@ -32,20 +32,19 @@ if [ ! -f "/installed" ]  ; then
     ###### SysConfig defaults ##############
     /etc/init.d/mysql start
     if [ -n "${OTRS_DEFAULT_LANGUAGE}" ]; then
-        echo "TESTE"
-        su -c "/opt/otrs/bin/otrs.Console.pl Admin::Config::Update --no-deploy --setting-name DefaultLanguage --value ${OTRS_DEFAULT_LANGUAGE}" -s /bin/bash otrs;
+   		su -c "sed -i '10i\$Self->{\x27DefaultLanguage\x27} =  \x27${OTRS_DEFAULT_LANGUAGE}\x27;' /opt/otrs/Kernel/Config/Files/ZZZAuto.pm" -s /bin/bash otrs;
     fi
     
     if [ -n "${OTRS_FQDN}" ]; then
-        su -c "/opt/otrs/bin/otrs.Console.pl Admin::Config::Update --no-deploy --setting-name FQDN --value ${OTRS_FQDN}" -s /bin/bash otrs;
+		su -c "sed -i '10i\$Self->{\x27FQDN\x27} =  \x27${FQDN}\x27;' /opt/otrs/Kernel/Config/Files/ZZZAuto.pm" -s /bin/bash otrs;
     fi
     
     if [ -n "${OTRS_SYSTEM_ID}" ]; then
-        su -c "/opt/otrs/bin/otrs.Console.pl Admin::Config::Update --no-deploy --setting-name SystemID --value ${OTRS_SYSTEM_ID}" -s /bin/bash otrs;
+		su -c "sed -i '10i\$Self->{\x27SystemID\x27} =  \x27${OTRS_SYSTEM_ID}\x27;' /opt/otrs/Kernel/Config/Files/ZZZAuto.pm" -s /bin/bash otrs;
     fi
     
-    su -c "/opt/otrs/bin/otrs.Console.pl Maint::Config::Rebuild" -s /bin/bash otrs;
-    su -c "/opt/otrs/bin/otrs.Console.pl Admin::Config::Update --no-deploy --setting-name SecureMode --value 1" -s /bin/bash otrs;
+    #su -c "/opt/otrs/bin/otrs.Console.pl Maint::Config::Rebuild" -s /bin/bash otrs;
+    #su -c "/opt/otrs/bin/otrs.Console.pl Admin::Config::Update --no-deploy --setting-name SecureMode --value 1" -s /bin/bash otrs;
 
     ### OTRS admin default password:
     su -c "/opt/otrs/bin/otrs.Console.pl Admin::User::SetPassword 'root@localhost' complemento" -s /bin/bash otrs;
