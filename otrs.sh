@@ -34,7 +34,6 @@ if [ ! -f "/installed" ]  ; then
     while ! mysqladmin ping --silent; do sleep 1; done
     
     if [ -n "${OTRS_DEFAULT_LANGUAGE}" ]; then
-        echo "TESTE"
         su -c "/opt/otrs/bin/otrs.Console.pl Admin::Config::Update --no-deploy --setting-name DefaultLanguage --value ${OTRS_DEFAULT_LANGUAGE}" -s /bin/bash otrs;
     fi
     
