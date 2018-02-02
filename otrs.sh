@@ -27,14 +27,14 @@ if [ ! -f "/installed" ]  ; then
     ### Easy OTRS Docker ###
     cd /opt/otrs
     
-    sed -i -e 's/some-pass/complemento/g' /opt/otrs/Kernel/Config.pm
+    sed -i -e 's/some-pass/ligero/g' /opt/otrs/Kernel/Config.pm
     
     ###### SysConfig defaults ##############
     /etc/init.d/mysql start
     while ! mysqladmin ping --silent; do sleep 1; done
     
     if [ -n "${OTRS_DEFAULT_LANGUAGE}" ]; then
-        su -c "/opt/otrs/bin/otrs.Console.pl Admin::Config::Update --no-deploy --setting-name DefaultLanguage --value ${OTRS_DEFAULT_LANGUAGE}" -s /bin/bash otrs;
+            su -c "/opt/otrs/bin/otrs.Console.pl Admin::Config::Update --no-deploy --setting-name DefaultLanguage --value ${OTRS_DEFAULT_LANGUAGE}" -s /bin/bash otrs;
     fi
     
     if [ -n "${OTRS_FQDN}" ]; then
@@ -49,7 +49,7 @@ if [ ! -f "/installed" ]  ; then
     su -c "/opt/otrs/bin/otrs.Console.pl Admin::Config::Update --no-deploy --setting-name SecureMode --value 1" -s /bin/bash otrs;
 
     ### OTRS admin default password:
-    su -c "/opt/otrs/bin/otrs.Console.pl Admin::User::SetPassword 'root@localhost' complemento" -s /bin/bash otrs;
+    su -c "/opt/otrs/bin/otrs.Console.pl Admin::User::SetPassword 'root@localhost' ligero" -s /bin/bash otrs;
     
     /etc/init.d/mysql stop
     while mysqladmin ping --silent; do sleep 1; done
