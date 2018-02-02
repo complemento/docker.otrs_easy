@@ -53,7 +53,7 @@ If you are running docker from your localhost, just open your browser on:
 
 - **http://localhost/otrs/index.pl**
 - **user: root@localhost**
-- **password: complemento**
+- **password: ligero**
 
 If you turned off your Docker or your computer
 ----------------------------------------------

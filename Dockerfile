@@ -79,12 +79,12 @@ RUN apt-get -y install mysql-server
 COPY z_my_otrs.cnf /etc/mysql/mysql.conf.d/
 RUN /etc/init.d/mysql start && \
     while ! mysqladmin ping --silent; do sleep 1; done && \
-    mysqladmin -u root password complemento && \
-    mysql -u root -pcomplemento -e "GRANT ALL PRIVILEGES ON *.* TO otrs@localhost IDENTIFIED BY 'complemento'; FLUSH PRIVILEGES;" && \
-    mysql -u otrs -pcomplemento -e "CREATE DATABASE otrs DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;" && \
-    mysql -u otrs -pcomplemento otrs < /opt/src/otrs/scripts/database/otrs-schema.mysql.sql && \
-    mysql -u otrs -pcomplemento otrs < /opt/src/otrs/scripts/database/otrs-initial_insert.mysql.sql && \
-    mysql -u otrs -pcomplemento otrs < /opt/src/otrs/scripts/database/otrs-schema-post.mysql.sql
+    mysqladmin -u root password ligero && \
+    mysql -u root -pligero -e "GRANT ALL PRIVILEGES ON *.* TO otrs@localhost IDENTIFIED BY 'ligero'; FLUSH PRIVILEGES;" && \
+    mysql -u otrs -pligero -e "CREATE DATABASE otrs DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;" && \
+    mysql -u otrs -pligero otrs < /opt/src/otrs/scripts/database/otrs-schema.mysql.sql && \
+    mysql -u otrs -pligero otrs < /opt/src/otrs/scripts/database/otrs-initial_insert.mysql.sql && \
+    mysql -u otrs -pligero otrs < /opt/src/otrs/scripts/database/otrs-schema-post.mysql.sql
 
 #################################################
 # Supervisor
