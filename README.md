@@ -45,7 +45,7 @@ TIP: If you are not used to Docker, you can hit Ctrl+P+Q at this moment to get b
 
 You can choose to run also a specific OTRS 6 version:
 
-`docker run -ti --name otrs_easy -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 ligero/otrs_easy:`
+`docker run -ti --name otrs_easy -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 ligero/otrs_easy:6.0.5`
 
 Accessing your OTRS the first time
 ----------------------------------
