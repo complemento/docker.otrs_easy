@@ -30,7 +30,7 @@ How to Run it
 
  2. Run the following command:
 
-`docker run -ti --name otrs_easy -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 ligero/otrs_easy`
+`docker run -ti --name otrs_easy -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 ligero/otrs_easy:6.0.5`
 
 The container will start to load and when see the following lines, you will be able to access OTRS (the time should be different of course):
 
@@ -96,3 +96,12 @@ Example:
 `docker run -ti --name otrs_easy -v otrs_mysql:/var/lib/mysql -v otrs_app:/opt/otrs -p 80:80 -e OTRS_DEFAULT_LANGUAGE=pt_BR -e OTRS_FQDN=servicedesk.mycompany.com -e OTRS_SYSTEM_ID=53 ligero/otrs_easy`
 
 Note that these parameters can be only defined during the first run of the Docker. If you didn't specify any of them, then you should change those parameters under OTRS SysConfig.
+
+
+Know BUGs
+---------------------------------------
+If your docker host is based on Ubuntu and already has a Mysql server installed, you may not be able to start your container because of Apparmor. In this case, please, check the following solution:
+
+https://github.com/moby/moby/issues/7512
+`sudo ln -s /etc/apparmor.d/usr.sbin.mysqld /etc/apparmor.d/disable/`
+`sudo apparmor_parser -R /etc/apparmor.d/usr.sbin.mysqld`

@@ -77,7 +77,10 @@ RUN ln -s /opt/src/otrs/scripts/apache2-httpd.include.conf /etc/apache2/sites-av
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -y install mysql-server
 COPY z_my_otrs.cnf /etc/mysql/mysql.conf.d/
-RUN /etc/init.d/mysql start && \
+
+# See Bug https://stackoverflow.com/questions/9083408/fatal-error-cant-open-and-lock-privilege-tables-table-mysql-host-doesnt-ex
+RUN chown -R mysql:mysql /var/lib/mysql && \
+    /etc/init.d/mysql start && \
     while ! mysqladmin ping --silent; do sleep 1; done && \
     mysqladmin -u root password ligero && \
     mysql -u root -pligero -e "GRANT ALL PRIVILEGES ON *.* TO otrs@localhost IDENTIFIED BY 'ligero'; FLUSH PRIVILEGES;" && \
