@@ -66,6 +66,10 @@ if [ ! -f "/installed" ]  ; then
     while mysqladmin ping --silent; do sleep 1; done
     ########################################
 
+
+    # redirect /
+    echo "<META http-equiv='refresh' content='0;URL=${REDIRECT_ROOT_PATH_TO:-/otrs/index.pl}'>" > /var/www/html/index.html 
+    
     touch "/installed"
 fi
 
