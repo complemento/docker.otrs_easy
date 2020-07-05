@@ -4,8 +4,15 @@
 chown -R mysql:mysql /var/lib/mysql
 
 if [ ! -f "/installed" ]  ; then
+
+    # link RELEASE file to avoid errors on linking before
+    su -c "ln -sf /opt/src/otrs/RELEASE /opt/otrs/RELEASE"
+    
+    # linking other files
+    echo "Linking /opt/src/otrs to /opt/otrs. Please wait..."
     su -c "/opt/src/link.pl /opt/src/otrs /opt/otrs" -s /bin/bash otrs
     
+    echo "Setting fles permissions"
     rm /opt/otrs/bin/otrs.SetPermissions.pl
     cp /opt/src/otrs/bin/otrs.SetPermissions.pl /opt/otrs/bin/otrs.SetPermissions.pl
 
