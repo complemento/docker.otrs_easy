@@ -73,4 +73,4 @@ if [ ! -f "/installed" ]  ; then
     touch "/installed"
 fi
 
-/usr/bin/supervisord
+exec /usr/bin/supervisord
