@@ -2,7 +2,9 @@ FROM ubuntu:16.04
 MAINTAINER Complemento <https://www.complemento.net.br>
 
 # Definitions
-ARG OTRS_VERSION=${OTRS_VERSION}
+ARG BUILD_OTRS_VERSION=6.0.27
+
+ENV OTRS_VERSION=${BUILD_OTRS_VERSION}
 
 RUN apt-get update && \
     apt-get install -y supervisor \
