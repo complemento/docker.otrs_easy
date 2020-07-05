@@ -63,7 +63,9 @@ RUN apt-get install -y  libarchive-zip-perl \
                         libxml-libxml-perl \
                         libxml-libxslt-perl \
                         libxml-parser-perl \
-                        libyaml-libyaml-perl
+                        libyaml-libyaml-perl \
+                        libmoo-perl \
+                        libnamespace-clean-perl
 
 
 RUN /opt/src/otrs/bin/otrs.SetPermissions.pl --web-group=www-data
