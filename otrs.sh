@@ -8,6 +8,7 @@ if [ ! -f "/installed" ]  ; then
     
     # Create default files if first time
     mkdir -p /opt/otrs{,/Kernel,/var/cron}
+    chown otrs -R /opt/otrs /opt/src/otrs
     for file in "Kernel/Config.pm" "var/cron/aaa_base"  "var/cron/otrs_daemon"; do
         if [ ! -e "/opt/otrs/${file}" ] ; then
              cp  "/opt/src/otrs/${file}.dist" "/opt/otrs/${file}"
