@@ -5,11 +5,9 @@ chown -R mysql:mysql /var/lib/mysql
 
 if [ ! -f "/installed" ]  ; then
 
-    # link RELEASE file to avoid errors on linking before
-    mkdir /opt/otrs
-    ln -sf /opt/src/otrs/RELEASE /opt/otrs/RELEASE
     
     # Create default files if first time
+    mkdir -p /opt/otrs{,/Kernel,/var/cron}
     for file in "Kernel/Config.pm" "var/cron/aaa_base"  "var/cron/otrs_daemon"; do
         if [ ! -e "/opt/otrs/${file}" ] ; then
              cp  "/opt/src/otrs/${file}.dist" "/opt/otrs/${file}"
@@ -17,6 +15,9 @@ if [ ! -f "/installed" ]  ; then
              chmod 0666 "/opt/otrs/${file}"
         fi
     done
+    
+    # link RELEASE file to avoid errors on linking before
+    ln -sf /opt/src/otrs/RELEASE /opt/otrs/RELEASE
 
     ### Easy OTRS Docker ###
     cd /opt/otrs
