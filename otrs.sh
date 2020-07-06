@@ -5,6 +5,10 @@ chown -R mysql:mysql /var/lib/mysql
 
 if [ ! -f "/installed" ]  ; then
 
+    # link RELEASE file to avoid errors on linking before
+    mkdir /opt/otrs
+    ln -sf /opt/src/otrs/RELEASE /opt/otrs/RELEASE
+    
     # Create default files if first time
     for file in "Kernel/Config.pm" "var/cron/aaa_base"  "var/cron/otrs_daemon"; do
         if [ ! -e "/opt/otrs/${file}" ] ; then
@@ -18,10 +22,6 @@ if [ ! -f "/installed" ]  ; then
     cd /opt/otrs
     
     sed -i -e 's/some-pass/ligero/g' /opt/otrs/Kernel/Config.pm
-    
-    # link RELEASE file to avoid errors on linking before
-    mkdir /opt/otrs
-    su -c "ln -sf /opt/src/otrs/RELEASE /opt/otrs/RELEASE"
     
     # linking other files
     echo "Linking /opt/src/otrs to /opt/otrs. Please wait..."
