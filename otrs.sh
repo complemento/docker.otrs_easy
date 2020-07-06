@@ -5,6 +5,20 @@ chown -R mysql:mysql /var/lib/mysql
 
 if [ ! -f "/installed" ]  ; then
 
+    # Create default files if first time
+    for file in "Kernel/Config.pm" "var/cron/aaa_base"  "var/cron/otrs_daemon"; do
+        if [ ! -e "/opt/otrs/${file}" ] ; then
+             cp  "/opt/src/otrs/${file}.dist" "/opt/otrs/${file}"
+             chown otrs:www-data "/opt/otrs/${file}"
+             chmod 0666 "/opt/otrs/${file}"
+        fi
+    done
+
+    ### Easy OTRS Docker ###
+    cd /opt/otrs
+    
+    sed -i -e 's/some-pass/ligero/g' /opt/otrs/Kernel/Config.pm
+    
     # link RELEASE file to avoid errors on linking before
     mkdir /opt/otrs
     su -c "ln -sf /opt/src/otrs/RELEASE /opt/otrs/RELEASE"
@@ -26,20 +40,6 @@ if [ ! -f "/installed" ]  ; then
 
     /opt/otrs/bin/otrs.SetPermissions.pl --web-group=www-data
 
-    # Create default files if first time
-    for file in "Kernel/Config.pm" "var/cron/aaa_base"  "var/cron/otrs_daemon"; do
-        if [ ! -e "/opt/otrs/${file}" ] ; then
-             cp  "/opt/src/otrs/${file}.dist" "/opt/otrs/${file}"
-             chown otrs:www-data "/opt/otrs/${file}"
-             chmod 0666 "/opt/otrs/${file}"
-        fi
-    done
-
-    ### Easy OTRS Docker ###
-    cd /opt/otrs
-    
-    sed -i -e 's/some-pass/ligero/g' /opt/otrs/Kernel/Config.pm
-    
     ###### SysConfig defaults ##############
     /etc/init.d/mysql start
     while ! mysqladmin ping --silent; do sleep 1; done
