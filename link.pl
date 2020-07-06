@@ -82,6 +82,8 @@ sub Clean {
     for my $File (@List) {
         $File =~ s/\/\//\//g;
         
+        next if ( $File =~ /RELEASE/ );
+        
         # recurse into subdirectories
         if ( -d $File ) {
             Clean($File);
