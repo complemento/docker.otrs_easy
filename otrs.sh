@@ -6,6 +6,7 @@ chown -R mysql:mysql /var/lib/mysql
 if [ ! -f "/installed" ]  ; then
 
     # link RELEASE file to avoid errors on linking before
+    mkdir /opt/otrs
     su -c "ln -sf /opt/src/otrs/RELEASE /opt/otrs/RELEASE"
     
     # linking other files
